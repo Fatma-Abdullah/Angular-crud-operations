@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Product info</h2>
+<form #f="ngForm" (ngSubmit)="FormSubmit(f.value)">
+    {{newProduct.title  }} - {{newProduct.price}}
+
+<mat-dialog-content>
+    <input type="hidden" [(ngModel)]="newProduct.id" #id="ngModel" name="id" >
+    <mat-form-field appearance="outline">
+        <mat-label>Product Title</mat-label>
+        <input matInput [(ngModel)]="newProduct.title" #title="ngModel" name="title" placeholder="Placeholder" required>
+        <div class="alert alert-danger mt-1" *ngIf="title.touched && title.errors?.['required']">Product name required</div>
+        <!-- <span class="text-danger"  *ngIf="title.touched && title.errors?.['required']"> Product name required</span> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Price </mat-label>
+        <input matInput type="number" placeholder="Placeholder" [(ngModel)]="newProduct.price" #price="ngModel" name="price" required>
+        <div class="alert alert-danger mt-1" *ngIf="price.touched && price.errors?.['required']">Price required</div>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Description </mat-label>
+        <textarea matInput placeholder="Placeholder" [(ngModel)]="newProduct.description" #description="ngModel" name="description" required></textarea>
+        <div class="alert alert-danger mt-1" *ngIf="description.touched && description.errors?.['required']">Description name required</div>
+   
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Product category</mat-label>
+        <input matInput [(ngModel)]="newProduct.category" #category="ngModel" name="category" placeholder="Placeholder" required>
+        <div class="alert alert-danger mt-1" *ngIf="category.touched && category.errors?.['required']">Category name required</div>
+
+    </mat-form-field>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button type="submit" mat-button  mat-raised-button  color="primary" >Save</button>
+    <button mat-button mat-dialog-close mat-raised-button color="warn">Cancel</button>
+</mat-dialog-actions>
+</form>
